@@ -1,5 +1,5 @@
 *.txt
-*__pycache__
+*__pycache__/
 tst.py
-.vscode
+.vscode/
 .gitignore
