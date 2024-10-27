@@ -10,7 +10,7 @@ class YTDLPDownloader(Downloader):
             'outtmpl': os.path.join(self.download_path, '%(title)s.%(ext)s'),
             'proxy': self.proxy_manager.get_random_proxy(),
             'http_headers': {'User-Agent': self.user_agent},
-            'cookiefile': 'cookies.txt',
+            'cookiefile': './Downloader/cookies.txt',
         }
 
         try:

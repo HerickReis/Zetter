@@ -24,8 +24,9 @@ def verificar_arquivo(nome_arquivo, diretorio_raiz='.', criar_arquivo = False):
             return str(caminho.resolve())
 
     if criar_arquivo:
+        arquivo = raiz / arquivo
         arquivo.touch()
-        return f"Arquivo: <{nome_arquivo}> criado em {str(arquivo.resolve())}"
+        return str(arquivo.resolve())
 
     return None
 
