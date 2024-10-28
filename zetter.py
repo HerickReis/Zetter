@@ -11,4 +11,4 @@ while switch:
         print(f"{pos + 1} - {ops}")
         
     escolha = int(input("Escolha uma opção: "))
-    opcoes_funcionais[escolha]() if opcoes_funcionais[escolha] else print("\n",None, "\n")
+    opcoes_funcionais[escolha]() if opcoes_funcionais[escolha] else switch = False

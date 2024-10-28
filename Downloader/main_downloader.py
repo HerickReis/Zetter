@@ -17,19 +17,20 @@ from fake_useragent import UserAgent
 
 update_proxy_list(proxie_list=verificar_arquivo("proxies.txt"), config=verificar_arquivo("config.json"))
 
-async def baixar_video(url, downloaders):
+async def baixar_video(url, downloaders, audio_only):
     for downloader in downloaders:
-        if await downloader.download(url):
+        if await downloader.download(url, audio_only=audio_only):
             return True
     print(f"Falha ao baixar o vídeo de {url}")
     return False
 
 async def processar_fila(queue, downloaders):
     while True:
-        url = await queue.get()
-        if url is None:
+        item = await queue.get()
+        if item is None:
             break
-        await baixar_video(url, downloaders)
+        url, audio_only = item  # Obtém a URL e a opção de áudio da fila
+        await baixar_video(url, downloaders, audio_only)  # Passa a opção para baixar apenas o áudio
         queue.task_done()
 
 async def main():
@@ -55,7 +56,9 @@ async def main():
         if str(url).isspace():
             await queue.put(None)  # Encerra a fila
             break
-        await queue.put(url)  # Coloca a URL na fila
+
+        audio_only = input("Deseja baixar apenas o áudio? (s/n): ").strip().lower() == 's'
+        await queue.put((url, audio_only))  # Coloca a URL e a opção de áudio na fila
 
     # Aguarda o término dos downloads
     await consumidor
