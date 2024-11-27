@@ -3,3 +3,4 @@
 tst.py
 .vscode/
 .gitignore
+/*.json
