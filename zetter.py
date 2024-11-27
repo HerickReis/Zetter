@@ -7,8 +7,12 @@ opcoes_printaveis = ["Downloader - Baixar videos da internet", None]
 switch = True
 
 while switch:
-    for pos, ops in enumerate(opcoes_printaveis):
-        print(f"{pos + 1} - {ops}")
+    for pos, opc in enumerate(opcoes_printaveis):
+        print(f"{pos + 1} - {opc}")
         
     escolha = int(input("Escolha uma opção: "))
-    opcoes_funcionais[escolha]() if opcoes_funcionais[escolha] else switch = False
+    if opcoes_funcionais[escolha]:
+        opcoes_funcionais[escolha]()
+        
+    else:
+        switch = False

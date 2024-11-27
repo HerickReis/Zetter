@@ -15,7 +15,7 @@ class ProxyManager:
         return random.choice(self.proxy_list)
 
     def request_new_proxies(proxy_list_url):
-         with open(verificar_arquivo("proxies.txt",diretorio_raiz=r"C:\Users\heric\Desktop\Zetter\Downloader", criar_arquivo=True), "w") as proxy:
+         with open(verificar_arquivo(nome_arquivo="proxies.txt",diretorio_raiz=r"..\Zetter\Downloader", criar_arquivo=True), "w") as proxy:
             r =  requests.get(proxy_list_url)
             proxy.write(r.text)
 
